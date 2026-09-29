@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "creality-killer"
+version = "0.1.0"
+description = "Replacement GUI and terminal client for the Creality K1C (Klipper/Moonraker)"
+requires-python = ">=3.11"
+dependencies = [
+    "httpx>=0.27",
+    "websockets>=12",
+    "numpy>=1.26",
+]
+
+[project.optional-dependencies]
+gui = ["PySide6-Essentials>=6.6", "pyqtgraph>=0.13", "PyOpenGL>=3.1"]
+tui = ["textual>=0.60"]
+dev = ["pytest>=8", "pytest-asyncio>=0.23"]
+
+[project.scripts]
+ck = "creality_killer.__main__:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
